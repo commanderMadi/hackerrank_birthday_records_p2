@@ -1,32 +1,28 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import Radio from './components/Radio';
 import Table from './components/Table';
 
-class App extends Component {
-  constructor() {
-      super()
-    this.state = {
-      parameterState: ""
-    }
-  }
+const App = () => {
+    const [sortBy, setSortBy] = useState('');
 
-  sortByParameter(parameter) {
-    // set state of 'parameterState' here
-  }
+    const doSortBy = (parameter) => {
+        if (parameter === 'name') {
+            console.log('I ran!');
+            setSortBy('name');
+        } else {
+            setSortBy('birth');
+        }
+    };
 
-  render() {
     return (
-      <div className='container-fluid'>
-        <center>
-          <h1>Birthday Records</h1>
-        </center>
-        <Radio />
-        <Table />
-      </div>
-);
-
-
-  }
-}
+        <div className='container-fluid'>
+            <center>
+                <h1>Birthday Records</h1>
+            </center>
+            <Radio sortBy={sortBy} doSortBy={doSortBy} />
+            <Table sortBy={sortBy} />
+        </div>
+    );
+};
 
 export default App;
